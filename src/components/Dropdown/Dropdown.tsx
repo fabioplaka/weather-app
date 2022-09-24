@@ -1,10 +1,14 @@
 import { Select } from "antd";
-import { useState } from "react";
+import { FC, useState } from "react";
 import styles from "./Dropdown.module.scss";
+import { CountryTypes } from "../../types/countryType";
 
 const { Option } = Select;
+interface OptionsType {
+  options: CountryTypes[] | undefined;
+}
 
-const Dropdown = () => {
+const Dropdown:FC<OptionsType> = ({ options }) => {
   const [country, setCountry] = useState<string>();
 
   const handleChange = (value: string) => {
@@ -18,9 +22,11 @@ const Dropdown = () => {
       onChange={handleChange}
       value={country}
     >
-      <Option value="albania">Albania</Option>
-      <Option value="germany">Germany</Option>
-      <Option value="usa">Usa</Option>
+      {options && options.map((option) => {
+        return (
+          <Option value={option.name}>{option.name}</Option>
+        )
+      })}
     </Select>
   );
 };

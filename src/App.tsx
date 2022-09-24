@@ -1,7 +1,6 @@
-import React from 'react';
 import LayoutSidebar from './components/Layout/Layout';
 
-function App() {
+const App = () => {
   return (
     <div className="App">
       <LayoutSidebar />

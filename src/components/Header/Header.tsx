@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, useEffect, useState } from "react";
 import { Layout } from "antd";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -8,11 +8,23 @@ import {
 import styles from "./Header.module.scss";
 import { HeaderTypes } from "../../types/headerType";
 import Dropdown from "../Dropdown/Dropdown";
+import { CountryTypes } from "../../types/countryType";
+import { fetchCountries } from "../../api/fetchCountries";
 
 const Header: FC<HeaderTypes> = ({
   collapseSidebar,
   collapsed,
 }): JSX.Element => {
+  const [countriesList, setCountriesList] = useState<CountryTypes[]>();
+
+  useEffect(() => {
+    const countries = async () => {
+      const response = await fetchCountries();
+      setCountriesList(response);
+    };
+    countries();
+  }, []);
+
   return (
     <Layout.Header
       className={styles.container}
@@ -35,7 +47,7 @@ const Header: FC<HeaderTypes> = ({
           size="lg"
         />
       )}
-      <Dropdown />
+      <Dropdown options={countriesList} />
     </Layout.Header>
   );
 };
