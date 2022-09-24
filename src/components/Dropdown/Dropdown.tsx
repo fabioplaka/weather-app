@@ -15,12 +15,21 @@ const Dropdown:FC<OptionsType> = ({ options }) => {
     setCountry(value);
   };
 
+  const onSearch = (value: string) => {
+    setCountry(value);
+  }
+
   return (
     <Select
       className={styles.dropdownWrapper}
       placeholder="Select a country"
       onChange={handleChange}
       value={country}
+      showSearch
+      filterOption={(input, option) =>
+        (option!.children as unknown as string).toLowerCase().includes(input.toLowerCase())
+      }
+      onSearch={onSearch}
     >
       {options && options.map((option) => {
         return (
