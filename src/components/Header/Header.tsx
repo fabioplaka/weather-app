@@ -1,4 +1,4 @@
-import { FC, useEffect, useState } from "react";
+import { FC, useEffect, useMemo, useState } from "react";
 import { Layout } from "antd";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -25,6 +25,12 @@ const Header: FC<HeaderTypes> = ({
     countries();
   }, []);
 
+  const sortedCountries = useMemo(() => {
+    let result: CountryTypes[] | undefined = countriesList;
+    result = countriesList?.sort((a: CountryTypes, b: CountryTypes) => a.name.localeCompare(b.name));
+    return result;
+  }, [countriesList])
+
   return (
     <Layout.Header
       className={styles.container}
@@ -47,7 +53,7 @@ const Header: FC<HeaderTypes> = ({
           size="lg"
         />
       )}
-      <Dropdown options={countriesList} />
+      <Dropdown options={sortedCountries} />
     </Layout.Header>
   );
 };

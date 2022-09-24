@@ -24,7 +24,7 @@ const Dropdown:FC<OptionsType> = ({ options }) => {
     >
       {options && options.map((option) => {
         return (
-          <Option value={option.name}>{option.name}</Option>
+          <Option key={option.id} value={option.name}>{option.name}</Option>
         )
       })}
     </Select>
