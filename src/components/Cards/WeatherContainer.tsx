@@ -15,13 +15,19 @@ const WeatherContainer = (): JSX.Element => {
         </Weather>
       </Row>
       <Row className={styles.row}>
-        <Weather><Wind /></Weather>
+        <Weather>
+          <Wind />
+        </Weather>
       </Row>
       <Row className={styles.row}>
-        <Weather><Humidity /></Weather>
+        <Weather>
+          <Humidity />
+        </Weather>
       </Row>
       <Row className={styles.row}>
-        <Weather><Pressure /></Weather>
+        <Weather>
+          <Pressure />
+        </Weather>
       </Row>
     </>
   );

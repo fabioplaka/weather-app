@@ -3,12 +3,12 @@ type Coord = {
   lat: Number;
 };
 
-type Weather = Array<{
+type Weather = {
   id: Number;
   main: string;
   description: string;
   icon: string;
-}>;
+};
 
 type Main = {
   temp: Number;
@@ -39,7 +39,7 @@ type System = {
 
 export type CountryWeather = {
   coord: Coord;
-  weather: Weather;
+  weather: Array<Weather>;
   base: string;
   main: Main;
   visibility: Number;
