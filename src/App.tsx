@@ -1,9 +1,9 @@
-import LayoutSidebar from './components/Layout/Layout';
+import Main from './components/Layout/Main';
 
 const App = () => {
   return (
     <div className="App">
-      <LayoutSidebar />
+      <Main />
     </div>
   );
 }

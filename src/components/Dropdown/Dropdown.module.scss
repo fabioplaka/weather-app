@@ -1,6 +1,7 @@
 .dropdownWrapper {
-    width: 300px;
-    padding-right: 10px;
+    max-width: 450px;
+    width: 100%;
+    margin-bottom: 20px;
     &::placeholder {
         color: gray;
     }

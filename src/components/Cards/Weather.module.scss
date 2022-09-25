@@ -1,0 +1,16 @@
+.card {
+  max-width: 800px;
+  width: 100%;
+}
+
+.cardContent {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.weatherContentContainer {
+  display: flex;
+  flex-direction: column;
+}

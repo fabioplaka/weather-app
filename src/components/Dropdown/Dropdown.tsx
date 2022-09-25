@@ -1,41 +1,47 @@
 import { Select } from "antd";
-import { FC, useState } from "react";
+import { FC } from "react";
 import styles from "./Dropdown.module.scss";
 import { CountryTypes } from "../../types/countryType";
+import { DropdownTypes } from "../../types/dropdownTypes";
 
 const { Option } = Select;
 interface OptionsType {
   options: CountryTypes[] | undefined;
+  handleChange: (value: DropdownTypes) => void;
+  value: DropdownTypes;
 }
 
-const Dropdown:FC<OptionsType> = ({ options }) => {
-  const [country, setCountry] = useState<string>();
-
-  const handleChange = (value: string) => {
-    setCountry(value);
-  };
-
+const Dropdown: FC<OptionsType> = ({
+  options,
+  handleChange,
+  value,
+}): JSX.Element => {
   const onSearch = (value: string) => {
-    setCountry(value);
-  }
+    console.log(value);
+  };
 
   return (
     <Select
+      labelInValue
       className={styles.dropdownWrapper}
-      placeholder="Select a country"
       onChange={handleChange}
-      value={country}
       showSearch
+      value={value}
       filterOption={(input, option) =>
-        (option!.children as unknown as string).toLowerCase().includes(input.toLowerCase())
+        (option!.children as unknown as string)
+          .toLowerCase()
+          .includes(input.toLowerCase())
       }
       onSearch={onSearch}
     >
-      {options && options.map((option) => {
-        return (
-          <Option key={option.id} value={option.name}>{option.name}</Option>
-        )
-      })}
+      {options &&
+        options.map((option) => {
+          return (
+            <Option key={option.id} value={option.name}>
+              {option.name}
+            </Option>
+          );
+        })}
     </Select>
   );
 };
